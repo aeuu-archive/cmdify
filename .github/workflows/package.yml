@@ -19,7 +19,7 @@ jobs:
         run: yarn build
         working-directory: packages/common
       - name: Login to NPM
-        run: yarn config set _authToken ${{secrets.NODE_AUTH_TOKEN}}
+        run: yarn config set npmAuthToken ${{secrets.NODE_AUTH_TOKEN}}
       - name: Publish Package
         run: yarn npm publish --access public
         working-directory: packages/common
@@ -41,7 +41,7 @@ jobs:
         run: yarn build
         working-directory: packages/core
       - name: Login to NPM
-        run: yarn config set _authToken ${{secrets.NODE_AUTH_TOKEN}}
+        run: yarn config set npmAuthToken ${{secrets.NODE_AUTH_TOKEN}}
       - name: Publish Package
         run: yarn npm publish --access public
         working-directory: packages/core
