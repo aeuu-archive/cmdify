@@ -19,7 +19,7 @@ jobs:
         run: yarn build
         working-directory: packages/common
       - name: Publish Package
-        run: npm publish --access public
+        run: yarn publish --access public
         working-directory: packages/common
         env:
           NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_TOKEN}}
@@ -41,7 +41,7 @@ jobs:
         run: yarn build
         working-directory: packages/core
       - name: Publish Package
-        run: npm publish --access public
+        run: yarn publish --access public
         working-directory: packages/core
         env:
           NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_TOKEN}}
