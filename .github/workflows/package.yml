@@ -1,0 +1,47 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+
+jobs:
+  common:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@cmdify'
+      - name: Install Dependencies
+        run: yarn install
+      - name: Compile TypeScript
+        run: yarn build
+        working-directory: packages/common
+      - name: Publish Package
+        run: npm publish --access public
+        working-directory: packages/common
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_TOKEN}}
+          
+  core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@cmdify'
+      - name: Install Dependencies
+        run: yarn install
+      - name: Compile Dependencies
+        run: yarn workspace @cmdify/common build
+      - name: Compile TypeScript
+        run: yarn build
+        working-directory: packages/core
+      - name: Publish Package
+        run: npm publish --access public
+        working-directory: packages/core
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_TOKEN}}

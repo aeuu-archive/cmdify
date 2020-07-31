@@ -1,0 +1,39 @@
+{
+  "name": "@cmdify/common",
+  "version": "0.1.0",
+  "description": "Common utilities for cmdify",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "repository": "https://github.com/cmdify/cmdify.git",
+  "author": "arktfox <brian@arct.io>",
+  "license": "MIT",
+  "files": ["dist/**/*"],
+  "scripts": {
+    "prepack": "yarn build",
+    "build": "tsc",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --fix --ext .ts"
+  },
+  "peerDependencies": {
+    "@cmdify/core": "*",
+    "discord.js": "^12.2.0",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@arctfox/eslint-config": "latest",
+    "@arctfox/prettier-config": "latest",
+    "@types/node": "^14.0.23",
+    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "discord.js": "^12.2.0",
+    "eslint": "^7.5.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "prettier": "^2.0.5",
+    "reflect-metadata": "^0.1.13",
+    "typescript": "^3.9.7"
+  },
+  "prettier": "@arctfox/prettier-config"
+}

@@ -1,0 +1,21 @@
+{
+  "extends": "../../config/tsconfig.json",
+
+  "compilerOptions": {
+    "types": [
+      "node",
+      "reflect-metadata",
+      "discord.js"
+    ],
+
+    "outDir": "dist/"
+  },
+
+  "include": [
+    "src/**/*"
+  ],
+
+  "exclude": [
+    "node_modules/*"
+  ]
+}
