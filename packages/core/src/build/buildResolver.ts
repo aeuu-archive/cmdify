@@ -15,7 +15,7 @@ export function buildResolver(
     throw new Error('Cannot build type resolver without @Resolve')
 
   if (Metadata.exists(Symbols.init, instance))
-    instance[Metadata.get(Symbols.init, instance)!!.property](module.client)
+    instance[Metadata.get(Symbols.init, instance)!!.property].call(instance, module)
 
   return Metadata.get(Symbols.resolver, instance)!!.map(r => {
     const resolver = new Client.Resolver(module)

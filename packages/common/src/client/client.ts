@@ -52,7 +52,7 @@ export namespace Client {
     public readonly category: string
     public readonly usage: string
 
-    aliases?: string[]
+    public readonly aliases: string[]
 
     public action: (ctx: ActionContext) => any = () => {}
     public handlers: {
@@ -65,6 +65,7 @@ export namespace Client {
       this.description = metadata.description || 'No description'
       this.category = metadata.category || 'No category'
       this.usage = metadata.usage || 'No usage'
+      this.aliases = metadata.aliases || []
     }
   }
 

@@ -18,8 +18,7 @@ export const handleMessage = (module: Client.Module) => async (
   const command = module.commands.find(
     c =>
       c.name === commandName.toLowerCase() ||
-      c.aliases?.map(k => k.toLowerCase()).includes(commandName) ||
-      false
+      (c.aliases || []).map(k => k.toLowerCase()).includes(commandName.toLowerCase())
   )
 
   if (!command) return

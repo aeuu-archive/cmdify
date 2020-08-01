@@ -13,5 +13,5 @@ class ParametersArgument {
   }
 }
 
-export const Parameters = createArgumentDecorator(ParametersArgument)
+export const Parameters = createArgumentDecorator(ParametersArgument)()
 export const Params = Parameters

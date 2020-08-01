@@ -28,7 +28,7 @@ export function buildListener(
   listener.events = buildHandlers(instance)
 
   if (Metadata.exists(Symbols.init, instance))
-    instance[Metadata.get(Symbols.init, instance)!!.property](listener)
+    instance[Metadata.get(Symbols.init, instance)!!.property].call(instance, listener)
 
   return listener
 }
@@ -71,6 +71,6 @@ function buildHandler(
     )
 
   return {
-    [event]: applyParametersTo(instance[handler.property], parameters)
+    [event]: applyParametersTo(instance[handler.property], parameters).bind(instance)
   }
 }

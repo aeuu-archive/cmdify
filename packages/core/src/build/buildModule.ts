@@ -39,7 +39,7 @@ export function buildModule(
   )
 
   if (Metadata.exists(Symbols.init, instance))
-    instance[Metadata.get(Symbols.init, instance)!!.property](module)
+    instance[Metadata.get(Symbols.init, instance)!!.property].call(instance, module)
 
   return module
 }

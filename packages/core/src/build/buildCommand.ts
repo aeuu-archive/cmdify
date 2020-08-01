@@ -28,7 +28,7 @@ export function buildCommand(
   command.handlers = buildHandlers(instance)
 
   if (Metadata.exists(Symbols.init, instance))
-    instance[Metadata.get(Symbols.init, instance)!!.property](command)
+    instance[Metadata.get(Symbols.init, instance)!!.property].call(instance, command)
 
   return command
 }
@@ -47,9 +47,7 @@ function buildAction(instance: any): Client.Command['action'] | undefined {
     if (!parameter.target.includes('action'))
       throw new Error('Parameter not applicable to "action"')
 
-  const fn = instance[handler.property]
-
-  return (ctx: ActionContext) => fn(...applyParameters(ctx, parameters))
+  return applyParametersTo(instance[handler.property], parameters).bind(instance)
 }
 
 function buildHandlers(instance: any): Client.Command['handlers'] {
@@ -75,6 +73,6 @@ function buildHandler(
 
   return {
     target: handler.error,
-    handle: applyParametersTo(instance[handler.property], parameters)
+    handle: applyParametersTo(instance[handler.property], parameters).bind(instance)
   }
 }
